@@ -2,6 +2,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
 </head>
 <body>
   <div style="display:none">
@@ -89,12 +90,14 @@ var qaList = [
       dialogBox.scrollTop = dialogBox.scrollHeight; // 捲動到最下方。
     }
 
+	   var r =getAnswer();
     function answer() { // 回答問題
       setTimeout(function () { // 停頓 1 到 3 秒再回答問題 (因為若回答太快就不像人了，人打字需要時間)
-        append(">> "+getAnswer());
+        append(">> "+r);
       }, 1000+random(2000));
+	    ThunkableWebviewerExtension.postMessage(r);
     }
-    
+
     function getAnswer() {
       var say = document.getElementById("say").value; // 取得使用者輸入的問句。
 	  document.getElementById("say").value = "";
